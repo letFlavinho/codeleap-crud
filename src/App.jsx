@@ -1,27 +1,17 @@
 import "./App.css";
-import React, { useState, useEffect } from "react";
-import { Logo } from "./components/Logo";
-import { Login } from "./components/Login";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Home } from "./home/Home";
+import { Posts } from "./Posts/Posts";
+
 function App() {
-  const [showElement, setShowElement] = useState(true);
-
-  useEffect(() => {
-    setTimeout(function () {
-      setShowElement(false);
-    }, 3000);
-  }, []);
-
   return (
     <div className="App">
-      <div>
-        {showElement ? (
-          <Logo />
-        ) : (
-          <div>
-            <Login />
-          </div>
-        )}
-      </div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Posts" element={<Posts />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

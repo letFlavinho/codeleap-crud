@@ -1,0 +1,44 @@
+.Post {
+  border: 1px solid #cccccc;
+  background-color: white;
+
+  display: flex;
+  flex-direction: column;
+  width: 40rem;
+}
+
+.trashButton{
+    margin: 0 1rem;
+}
+.buttons {
+  
+  vertical-align: middle;
+  display: flex;
+}
+header {
+  padding: 1.2rem 1.7rem 1rem;
+  justify-content: space-between;
+  display: flex;
+  color: white;
+  background-color: black;
+}
+.spans {
+  display: flex;
+  justify-content: space-between;
+}
+span {
+  margin-bottom: 0.5rem;
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: right;
+  color: #777777;
+  line-height: 21px;
+
+  color: #777777;
+}
+article {
+  font-size: 18px;
+  padding: 1.5rem;
+}

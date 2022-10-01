@@ -1,0 +1,30 @@
+.DeleteModal {
+    border: 1px solid #999999;
+  background-color: white;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+  
+}
+
+.DeleteModal .flex-end {
+  display: flex;
+  justify-content: flex-end;
+
+}
+
+p{
+    margin-bottom: 2rem;
+}
+.DeleteModal button {
+    padding: 0.3rem 1rem;
+    margin: 0 0 0 1rem;
+    width: 6rem;
+  font-weight: 700;
+  color: black;
+  background-color: white;
+  box-sizing: border-box;
+
+border: 1px solid #000000;
+}

@@ -1,0 +1,25 @@
+.Posts{
+    border: 1px solid #cccccc;
+     background-color: white;
+    display: flex;
+    flex-direction: column;
+    
+    width: 55%;
+    background-color: white;
+}
+header {
+    padding: 1.2rem 1.7rem 1rem;
+    
+    display: flex;
+    color: white;
+    background-color: black;
+  }
+section{
+    margin: 2rem;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.Post{
+    margin: 2rem 0;
+}

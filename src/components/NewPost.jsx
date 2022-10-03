@@ -1,4 +1,5 @@
 import style from "../components/NewPost.css";
+import api from "../api/api";
 export function NewPost() {
   return (
     <div className="NewPost">

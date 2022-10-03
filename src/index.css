@@ -12,3 +12,17 @@ button:hover{
   opacity: 0.6;
   transition: 0.3s;
 }
+:root{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #DDDDDD;
+}
+textarea,
+input {
+    border: 1px solid #777777;
+padding: 0.2rem;
+  border-radius: 4px;
+}

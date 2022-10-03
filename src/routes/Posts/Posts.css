@@ -1,10 +1,10 @@
 .Posts{
     border: 1px solid #cccccc;
-     background-color: white;
+    background-color: white;
     display: flex;
     flex-direction: column;
     
-    width: 55%;
+    
     background-color: white;
 }
 header {

@@ -1,39 +1,36 @@
 .Login {
-  border: 1px solid #CCCCCC;
-    background-color: white;
-    padding: 2rem;
-    margin: 2rem;
-    display: flex;
-    flex-direction: column;
-  
-    width: 30rem;
-  
-  }
-  .Login .flex-end {
-    
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  .Login h3{
-    font-weight: 700;
-    font-size: 1.375rem;
-    margin-bottom: 1.5rem;
-  }
-  .Login p{
-    font-size:1rem  ;
-    margin-bottom: 0.8rem;
-  }
-  .Login button{
-    
-    margin-top: 1rem;
-    padding: 0.35rem 1.6rem;
-    font-weight: 700;
-    color: white;
-    background-color: black;
-    
-  }
-  .Login input
-  {
-    max-width: 27.5rem;
-  }
+  border: 1px solid #cccccc;
+  background-color: white;
+  padding: 2rem;
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  width: 30rem;
+}
+.Login .flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Login h3 {
+  font-weight: 700;
+  font-size: 1.375rem;
+  margin-bottom: 1.5rem;
+}
+.Login p {
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+}
+.Login input {
+  max-width: 27.5rem;
+}
+.button {
+  font-size: small;
+  text-decoration: none;
+  margin-top: 1rem;
+  padding: 0.35rem 1.6rem;
+  font-weight: 700;
+  color: white;
+  background-color: black;
+}

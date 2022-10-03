@@ -9,7 +9,6 @@
 }
 header {
     padding: 1.2rem 1.7rem 1rem;
-    
     display: flex;
     color: white;
     background-color: black;
@@ -22,4 +21,8 @@ section{
 }
 .Post{
     margin: 2rem 0;
+}
+.logoutbtn{
+    margin-right: 0.3rem;
+    color: white;
 }

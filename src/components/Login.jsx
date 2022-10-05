@@ -1,9 +1,10 @@
 import style from "../components/Login.css";
 import { useState } from "react";
-import { Outlet, Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import MyContext from "../contexts/MyContext";
 export function Login() {
-  const [username, setUsername] = useState();
+  const [username, setUsername] = useState("");
+  const navigate = useNavigate();
   return (
     <div className="Login">
       <h3>Welcome to Leap network!</h3>
@@ -12,13 +13,18 @@ export function Login() {
         type="text"
         placeholder="John Doe"
         value={username}
-        // onChange={(event) => setUsername(event.target.value)}
-        // onKeyPress={HandleKeyPress}
+        onChange={(event) => setUsername(event.target.value)}
       />
       <div className="flex-end">
-        <Link to={`/Posts`} className="button">
+        <button
+          type="submit"
+          onClick={() => {
+            navigate("/Posts", { state: { username: username } });
+          }}
+          className="button"
+        >
           ENTER
-        </Link>
+        </button>
       </div>
     </div>
   );

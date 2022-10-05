@@ -1,7 +1,7 @@
 import style from "../components/Post.css";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
-export function Post() {
+export function Post(props) {
   return (
     <div className="Post">
       <header>
@@ -14,7 +14,7 @@ export function Post() {
       </header>
       <article>
         <div className="spans">
-          <span>@Flabels</span>
+          <span>{props.name}</span>
           <span>25 minutes ago</span>
         </div>
         <p>

@@ -26,3 +26,8 @@ section{
     margin-right: 0.3rem;
     color: white;
 }
+@media screen and (max-width: 768px) {
+    .Posts{
+        min-width: 80vw ;
+    }
+}

@@ -1,7 +1,7 @@
 import style from "../components/Login.css";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import MyContext from "../contexts/MyContext";
+import { useNavigate } from "react-router-dom";
+
 export function Login() {
   const [username, setUsername] = useState("");
   const navigate = useNavigate();

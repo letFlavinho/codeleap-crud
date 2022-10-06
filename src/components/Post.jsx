@@ -5,7 +5,7 @@ export function Post(props) {
   return (
     <div className="Post">
       <header>
-        <h3>My First Post at Codeleap Network </h3>
+        <h3>{props.title} </h3>
         <div className="buttons">
           <MdDeleteForever className="trashButton" size={25} />
 
@@ -17,15 +17,7 @@ export function Post(props) {
           <span>{props.name}</span>
           <span>25 minutes ago</span>
         </div>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent odio
-          ex, faucibus sed metus at, interdum pretium velit. Aliquam erat
-          volutpat. Maecenas sollicitudin odio in risus tincidunt tempor. Etiam
-          congue accumsan metus, quis lobortis risus ornare ut. Vivamus id orci
-          luctus, hendrerit nibh vitae, accumsan tellus. Fusce placerat laoreet
-          ullamcorper. Integer malesuada urna vitae scelerisque venenatis.
-          Pellentesque non vehicula lacus, eu tincidunt dui.
-        </p>
+        <p>{props.content}</p>
       </article>
     </div>
   );

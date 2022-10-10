@@ -15,7 +15,7 @@ export function Post(props) {
       <article>
         <div className="spans">
           <span>{props.name}</span>
-          <span>25 minutes ago</span>
+          <span>{props.time}</span>
         </div>
         <p>{props.content}</p>
       </article>

@@ -4,21 +4,21 @@ import { ApiPost } from "../components/ApiPosts";
 import { FiLogOut } from "react-icons/fi";
 import { Outlet, Link, useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import api from "../api/api";
 import { formatDistanceToNow } from "date-fns";
 import axios from "axios";
-import { useForm } from "react-hook-form";
 
 export function Posts() {
-  const [time, setTime] = useState(new Date());
-  const [posts, setPosts] = useState([]);
-  useEffect(() => {
-    axios
-      .get("https://dev.codeleap.co.uk/careers/?format=json")
-      .then((Response) => setPosts(Response.data.results))
-      .catch((error) => console.error(error));
-  }, []);
   const location = useLocation();
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [time, setTime] = useState("");
+  const [posts, setPosts] = useState([]);
+  const newPost = {
+    title: title,
+    content: content,
+    username: location.state.username,
+    created_datetime: time,
+  };
   const handleTime = (date) => {
     const result = formatDistanceToNow(
       new Date(date),
@@ -26,6 +26,32 @@ export function Posts() {
       { includeSeconds: true }
     );
     return result;
+  };
+  useEffect(() => {
+    axios
+      .get("https://dev.codeleap.co.uk/careers/?format=json")
+      .then((Response) => setPosts(Response.data.results))
+      .catch((error) => console.error(error));
+  }, []);
+
+  const createNewPost = async () => {
+    axios
+      .post("https://dev.codeleap.co.uk/careers/?format=api", newPost)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
+  const handleDate = () => {
+    const dt = new Date().toLocaleString();
+    setTime(dt);
+  };
+  const handleClick = (event) => {
+    handleDate();
+    createNewPost();
   };
   return (
     <div className="Posts">
@@ -44,6 +70,7 @@ export function Posts() {
             className="title"
             type="text"
             placeholder="Hello World"
+            value={title}
             onChange={(event) => setTitle(event.target.value)}
           />
           <label>Content</label>
@@ -51,10 +78,11 @@ export function Posts() {
             className="content"
             type="text"
             placeholder="Content here"
+            value={content}
             onChange={(event) => setContent(event.target.value)}
           />
           <div className="flex-end">
-            <button>CREATE</button>
+            <button onClick={handleClick}>CREATE</button>
           </div>
         </div>
 

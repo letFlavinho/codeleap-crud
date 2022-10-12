@@ -46,7 +46,7 @@ export function Posts() {
   };
 
   const handleDate = () => {
-    const dt = new Date().toLocaleString();
+    const dt = new Date().toISOString();
     setTime(dt);
   };
   const handleClick = (event) => {

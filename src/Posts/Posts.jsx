@@ -8,6 +8,7 @@ import { formatDistanceToNow } from "date-fns";
 import axios from "axios";
 
 export function Posts() {
+  const baseURL = "https://dev.codeleap.co.uk/careers/?format=json";
   const location = useLocation();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -27,16 +28,17 @@ export function Posts() {
     );
     return result;
   };
+
   useEffect(() => {
     axios
-      .get("https://dev.codeleap.co.uk/careers/?format=json")
+      .get(baseURL)
       .then((Response) => setPosts(Response.data.results))
       .catch((error) => console.error(error));
   }, []);
 
   const createNewPost = async () => {
     axios
-      .post("https://dev.codeleap.co.uk/careers/?format=api", newPost)
+      .post(baseURL, newPost)
       .then(function (response) {
         console.log(response);
       })
@@ -87,15 +89,26 @@ export function Posts() {
         </div>
 
         {posts.map((post, key) => {
-          return (
-            <Post
-              className="Post"
-              name={post.username}
-              content={post.content}
-              title={post.title}
-              time={handleTime(post.created_datetime)}
-            />
-          );
+          if (post.username === location.state.username) {
+            return (
+              <Post
+                className="Post"
+                name={post.username}
+                content={post.content}
+                title={post.title}
+                time={handleTime(post.created_datetime)}
+              />
+            );
+          } else {
+            return (
+              <ApiPost
+                name={post.username}
+                content={post.content}
+                title={post.title}
+                time={handleTime(post.created_datetime)}
+              />
+            );
+          }
         })}
       </section>
     </div>

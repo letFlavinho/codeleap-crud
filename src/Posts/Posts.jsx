@@ -151,7 +151,7 @@ export function Posts() {
           overLayClassName="modal-overlay"
           className="modal-content"
         >
-          <EditModal />
+          <EditModal close={closeEditModal} />
         </Modal>
         <Modal
           isOpen={deleteIsOpen}
@@ -160,7 +160,7 @@ export function Posts() {
           overLayClassName="modal-overlay"
           className="modal-content"
         >
-          <DeleteModal />
+          <DeleteModal cancel={closeDeleteModal} />
         </Modal>
       </section>
     </div>

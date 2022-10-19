@@ -4,8 +4,8 @@ export function DeleteModal(props) {
     <div className="DeleteModal">
       <p>Are you sure you want to delete this item?</p>
       <div className="flex-end">
-        <button>Cancel</button>
-        <button>OK</button>
+        <button onClick={props.cancel}>Cancel</button>
+        <button onClick={props.delete}>OK</button>
       </div>
     </div>
   );

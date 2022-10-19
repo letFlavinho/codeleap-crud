@@ -38,3 +38,7 @@ padding: 0.2rem;
   color: white;
   background-color: black;
 }
+.header{
+  display: flex;
+  justify-content: space-between;
+}

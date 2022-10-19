@@ -1,5 +1,5 @@
 import style from "../components/DeleteModal.css";
-export function DeleteModal() {
+export function DeleteModal(props) {
   return (
     <div className="DeleteModal">
       <p>Are you sure you want to delete this item?</p>

@@ -1,15 +1,25 @@
 import style from "../components/Post.css";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
+import { EditModal } from "./EditModal";
+import { DeleteModal } from "./DeleteModal";
 export function Post(props) {
   return (
     <div className="Post">
       <header>
         <h3>{props.title} </h3>
         <div className="buttons">
-          <MdDeleteForever className="trashButton" size={25} />
+          <MdDeleteForever
+            onClick={props.openDeleteModal}
+            className="trashButton"
+            size={25}
+          />
 
-          <FaRegEdit className="editButton" size={23} />
+          <FaRegEdit
+            onClick={props.openEditModal}
+            className="editButton"
+            size={23}
+          />
         </div>
       </header>
       <article>

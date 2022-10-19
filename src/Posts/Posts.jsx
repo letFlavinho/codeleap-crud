@@ -6,8 +6,31 @@ import { Outlet, Link, useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { formatDistanceToNow } from "date-fns";
 import axios from "axios";
+import Modal from "react-modal";
+import { EditModal } from "../components/EditModal";
+import { DeleteModal } from "../components/DeleteModal";
 
 export function Posts() {
+  const [editIsOpen, setEditIsOpen] = useState(false);
+  const [deleteIsOpen, setDeleteIsOpen] = useState(false);
+  function openEditModal() {
+    console.log("working");
+    setEditIsOpen(true);
+  }
+
+  function closeEditModal() {
+    setEditIsOpen(false);
+  }
+
+  function openDeleteModal() {
+    console.log("working");
+    setDeleteIsOpen(true);
+  }
+
+  function closeDeleteModal() {
+    setDeleteIsOpen(false);
+  }
+
   const baseURL = "https://dev.codeleap.co.uk/careers/?format=json";
   const location = useLocation();
   const [title, setTitle] = useState("");
@@ -29,11 +52,14 @@ export function Posts() {
     return result;
   };
 
-  useEffect(() => {
+  const loadPosts = async () => {
     axios
       .get(baseURL)
       .then((Response) => setPosts(Response.data.results))
       .catch((error) => console.error(error));
+  };
+  useEffect(() => {
+    loadPosts();
   }, []);
 
   const createNewPost = async () => {
@@ -47,6 +73,10 @@ export function Posts() {
       });
   };
 
+  const editPost = async () => {
+    axios.put();
+  };
+
   const handleDate = () => {
     const dt = new Date().toISOString();
     setTime(dt);
@@ -54,7 +84,9 @@ export function Posts() {
   const handleClick = (event) => {
     handleDate();
     createNewPost();
+    loadPosts();
   };
+
   return (
     <div className="Posts">
       <header>
@@ -92,6 +124,8 @@ export function Posts() {
           if (post.username === location.state.username) {
             return (
               <Post
+                openDeleteModal={openDeleteModal}
+                openEditModal={openEditModal}
                 className="Post"
                 name={post.username}
                 content={post.content}
@@ -110,6 +144,24 @@ export function Posts() {
             );
           }
         })}
+        <Modal
+          isOpen={editIsOpen}
+          onRequestClose={closeEditModal}
+          contentLabel="Example Modal"
+          overLayClassName="modal-overlay"
+          className="modal-content"
+        >
+          <EditModal />
+        </Modal>
+        <Modal
+          isOpen={deleteIsOpen}
+          onRequestClose={closeDeleteModal}
+          contentLabel="Example Modal"
+          overLayClassName="modal-overlay"
+          className="modal-content"
+        >
+          <DeleteModal />
+        </Modal>
       </section>
     </div>
   );

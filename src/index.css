@@ -6,6 +6,7 @@
 }
 button{
   opacity:1;
+  cursor: pointer;
   
 }
 button:hover{

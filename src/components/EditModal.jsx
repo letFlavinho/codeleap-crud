@@ -6,7 +6,7 @@ export function EditModal(props) {
     <div className="EditModal">
       <div className="header">
         <h3>Edit Item</h3>
-        <IoClose onClick={props.close} size={30} />
+        <IoClose className="closeButton" onClick={props.close} size={30} />
       </div>
       <label>Title</label>
       <input className="title" type="text" placeholder="Hello World" />

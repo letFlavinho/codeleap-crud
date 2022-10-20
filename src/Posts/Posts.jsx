@@ -69,12 +69,16 @@ export function Posts() {
         console.log(response);
       })
       .catch(function (error) {
-        console.error(error);
+        alert("erro ao postar");
       });
   };
 
-  const editPost = async () => {
-    axios.put();
+  const deletePost = (id) => {
+    axios
+      .delete(`https://dev.codeleap.co.uk/careers/?format=json/${id}`)
+      .catch(function () {
+        alert("erro ao editar");
+      });
   };
 
   const handleDate = () => {
@@ -160,7 +164,7 @@ export function Posts() {
           overLayClassName="modal-overlay"
           className="modal-content"
         >
-          <DeleteModal cancel={closeDeleteModal} />
+          <DeleteModal delete={deletePost} cancel={closeDeleteModal} />
         </Modal>
       </section>
     </div>

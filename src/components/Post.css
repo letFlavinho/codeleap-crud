@@ -42,3 +42,6 @@ article {
   font-size: 18px;
   padding: 1.5rem;
 }
+.editButton, .trashButton{
+  cursor: pointer;
+}

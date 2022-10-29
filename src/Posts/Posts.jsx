@@ -11,28 +11,9 @@ import { EditModal } from "../components/EditModal";
 import { DeleteModal } from "../components/DeleteModal";
 
 export function Posts() {
-  const [editIsOpen, setEditIsOpen] = useState(false);
-  const [deleteIsOpen, setDeleteIsOpen] = useState(false);
-  function openEditModal() {
-    console.log("working");
-    setEditIsOpen(true);
-  }
-
-  function closeEditModal() {
-    setEditIsOpen(false);
-  }
-
-  function openDeleteModal() {
-    console.log("working");
-    setDeleteIsOpen(true);
-  }
-
-  function closeDeleteModal() {
-    setDeleteIsOpen(false);
-  }
-
   const baseURL = "https://dev.codeleap.co.uk/careers/?format=json";
   const location = useLocation();
+  const [deleteIdModal, setDeleteIdModal] = useState();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [time, setTime] = useState("");
@@ -43,6 +24,9 @@ export function Posts() {
     username: location.state.username,
     created_datetime: time,
   };
+  const [editIsOpen, setEditIsOpen] = useState(false);
+  const [deleteIsOpen, setDeleteIsOpen] = useState(false);
+
   const handleTime = (date) => {
     const result = formatDistanceToNow(
       new Date(date),
@@ -72,19 +56,34 @@ export function Posts() {
         alert("erro ao postar");
       });
   };
-
-  const deletePost = (id) => {
+  const deletePost = async (id) => {
     axios
-      .delete(`https://dev.codeleap.co.uk/careers/?format=json/${id}`)
-      .catch(function () {
-        alert("erro ao editar");
-      });
+      .delete(`${baseURL}/${id}`)
+      .then(loadPosts)
+      .catch((error) => console.error(error));
   };
 
   const handleDate = () => {
     const dt = new Date().toISOString();
     setTime(dt);
   };
+
+  function openEditModal() {
+    setEditIsOpen(true);
+  }
+
+  function closeEditModal() {
+    setEditIsOpen(false);
+  }
+
+  function openDeleteModal() {
+    setDeleteIsOpen(true);
+  }
+
+  function closeDeleteModal() {
+    setDeleteIsOpen(false);
+  }
+
   const handleClick = (event) => {
     handleDate();
     createNewPost();
@@ -164,7 +163,11 @@ export function Posts() {
           overLayClassName="modal-overlay"
           className="modal-content"
         >
-          <DeleteModal delete={deletePost} cancel={closeDeleteModal} />
+          <DeleteModal
+            deletePost={deletePost}
+            loadPost={loadPosts}
+            cancel={closeDeleteModal}
+          />
         </Modal>
       </section>
     </div>

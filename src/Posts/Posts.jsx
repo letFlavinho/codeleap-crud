@@ -13,11 +13,12 @@ import { DeleteModal } from "../components/DeleteModal";
 export function Posts() {
   const baseURL = "https://dev.codeleap.co.uk/careers/?format=json";
   const location = useLocation();
-  const [deleteIdModal, setDeleteIdModal] = useState();
+  const [id, setId] = useState(null);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [time, setTime] = useState("");
   const [posts, setPosts] = useState([]);
+
   const newPost = {
     title: title,
     content: content,
@@ -50,17 +51,19 @@ export function Posts() {
     axios
       .post(baseURL, newPost)
       .then(function (response) {
-        console.log(response);
+        loadPosts;
       })
       .catch(function (error) {
         alert("erro ao postar");
       });
   };
-  const deletePost = async (id) => {
-    axios
-      .delete(`${baseURL}/${id}`)
-      .then(loadPosts)
-      .catch((error) => console.error(error));
+  const deletePost = (id) => {
+    console.log(id);
+  };
+
+  const handleClickDelete = (id) => {
+    setDeleteId(id);
+    setShow(true);
   };
 
   const handleDate = () => {
@@ -127,6 +130,7 @@ export function Posts() {
           if (post.username === location.state.username) {
             return (
               <Post
+                setId={setId}
                 openDeleteModal={openDeleteModal}
                 openEditModal={openEditModal}
                 className="Post"
@@ -164,6 +168,7 @@ export function Posts() {
           className="modal-content"
         >
           <DeleteModal
+            id={id}
             deletePost={deletePost}
             loadPost={loadPosts}
             cancel={closeDeleteModal}

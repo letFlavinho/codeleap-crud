@@ -4,6 +4,7 @@ import { MdDeleteForever } from "react-icons/md";
 import { EditModal } from "./EditModal";
 import { DeleteModal } from "./DeleteModal";
 export function Post(props) {
+  const { setId } = props;
   return (
     <div className="Post">
       <header>

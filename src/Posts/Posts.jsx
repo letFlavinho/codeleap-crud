@@ -13,6 +13,7 @@ import { DeleteModal } from "../components/DeleteModal";
 export function Posts() {
   const baseURL = "https://dev.codeleap.co.uk/careers/?format=json";
   const location = useLocation();
+  const [deleteId, setDeleteId] = useState();
   const [id, setId] = useState(null);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -57,14 +58,14 @@ export function Posts() {
         alert("erro ao postar");
       });
   };
-  const deletePost = (id) => {
-    console.log(id);
+  const confirmModal = (id) => {
+    console.log(deleteId);
   };
 
-  const handleClickDelete = (id) => {
-    setDeleteId(id);
-    setShow(true);
-  };
+  // const handleClickDelete = (id) => {
+  //   setDeleteId(id);
+  //   setShow(true);
+  // };
 
   const handleDate = () => {
     const dt = new Date().toISOString();
@@ -79,7 +80,8 @@ export function Posts() {
     setEditIsOpen(false);
   }
 
-  function openDeleteModal() {
+  function openDeleteModal(id) {
+    setId(id);
     setDeleteIsOpen(true);
   }
 
@@ -126,12 +128,12 @@ export function Posts() {
           </div>
         </div>
 
-        {posts.map((post, key) => {
+        {posts.map((post) => {
           if (post.username === location.state.username) {
             return (
               <Post
-                setId={setId}
-                openDeleteModal={openDeleteModal}
+                key={post.id}
+                openDeleteModal={() => setDeleteId(post.id)}
                 openEditModal={openEditModal}
                 className="Post"
                 name={post.username}
@@ -143,6 +145,7 @@ export function Posts() {
           } else {
             return (
               <ApiPost
+                key={post.id}
                 name={post.username}
                 content={post.content}
                 title={post.title}
@@ -161,18 +164,13 @@ export function Posts() {
           <EditModal close={closeEditModal} />
         </Modal>
         <Modal
-          isOpen={deleteIsOpen}
-          onRequestClose={closeDeleteModal}
+          isOpen={!!deleteId}
+          onRequestClose={() => setDeleteId()}
           contentLabel="Example Modal"
           overLayClassName="modal-overlay"
           className="modal-content"
         >
-          <DeleteModal
-            id={id}
-            deletePost={deletePost}
-            loadPost={loadPosts}
-            cancel={closeDeleteModal}
-          />
+          <DeleteModal delete={confirmModal} cancel={() => setDeleteId()} />
         </Modal>
       </section>
     </div>

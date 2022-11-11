@@ -13,7 +13,7 @@ export function EditModal(props) {
       <label>Content</label>
       <textarea className="content" type="text" placeholder="Content here" />
       <div className="flex-end">
-        <button>SAVE</button>
+        <button onClick={() => props.save}>SAVE</button>
       </div>
     </div>
   );

@@ -11,10 +11,10 @@ import { EditModal } from "../components/EditModal";
 import { DeleteModal } from "../components/DeleteModal";
 
 export function Posts() {
-  const baseURL = "https://dev.codeleap.co.uk/careers/?format=json";
+  const baseURL = "http://dev.codeleap.co.uk/careers/";
   const location = useLocation();
+  const [editId, setEditId] = useState();
   const [deleteId, setDeleteId] = useState();
-  const [id, setId] = useState(null);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [time, setTime] = useState("");
@@ -51,21 +51,25 @@ export function Posts() {
   const createNewPost = async () => {
     axios
       .post(baseURL, newPost)
-      .then(function (response) {
-        loadPosts;
-      })
+      .then(loadPosts)
       .catch(function (error) {
-        alert("erro ao postar");
+        alert("Erro ao postar! Tente de novo.");
       });
   };
-  const confirmModal = (id) => {
-    console.log(deleteId);
+  const confirmDeleteModal = () => {
+    axios
+      .delete(`${baseURL}${deleteId}/`)
+      .then(function (response) {
+        setDeleteId();
+        loadPosts();
+      })
+      .catch(function (error) {
+        alert("erro ao deletar post");
+      });
   };
-
-  // const handleClickDelete = (id) => {
-  //   setDeleteId(id);
-  //   setShow(true);
-  // };
+  const confirmEditModal = () => {
+    console.log(editId);
+  };
 
   const handleDate = () => {
     const dt = new Date().toISOString();
@@ -81,7 +85,6 @@ export function Posts() {
   }
 
   function openDeleteModal(id) {
-    setId(id);
     setDeleteIsOpen(true);
   }
 
@@ -134,7 +137,7 @@ export function Posts() {
               <Post
                 key={post.id}
                 openDeleteModal={() => setDeleteId(post.id)}
-                openEditModal={openEditModal}
+                openEditModal={() => setEditId(post.id)}
                 className="Post"
                 name={post.username}
                 content={post.content}
@@ -155,13 +158,13 @@ export function Posts() {
           }
         })}
         <Modal
-          isOpen={editIsOpen}
-          onRequestClose={closeEditModal}
+          isOpen={!!editId}
+          onRequestClose={() => setEditId()}
           contentLabel="Example Modal"
           overLayClassName="modal-overlay"
           className="modal-content"
         >
-          <EditModal close={closeEditModal} />
+          <EditModal save={confirmEditModal} close={() => setEditId()} />
         </Modal>
         <Modal
           isOpen={!!deleteId}
@@ -170,7 +173,10 @@ export function Posts() {
           overLayClassName="modal-overlay"
           className="modal-content"
         >
-          <DeleteModal delete={confirmModal} cancel={() => setDeleteId()} />
+          <DeleteModal
+            delete={confirmDeleteModal}
+            cancel={() => setDeleteId()}
+          />
         </Modal>
       </section>
     </div>

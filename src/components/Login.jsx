@@ -5,6 +5,11 @@ import { useNavigate } from "react-router-dom";
 export function Login() {
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
+  const HandleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      navigate("/Posts", { state: { username: username } });
+    }
+  };
   return (
     <div className="Login">
       <h3>Welcome to Leap network!</h3>
@@ -14,6 +19,7 @@ export function Login() {
         placeholder="John Doe"
         value={username}
         onChange={(event) => setUsername(event.target.value)}
+        onKeyPress={HandleKeyPress}
       />
       <div className="flex-end">
         <button

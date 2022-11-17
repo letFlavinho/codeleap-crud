@@ -21,14 +21,16 @@ export function Posts() {
   const [posts, setPosts] = useState([]);
   const [editTitle, setEditTitle] = useState();
   const [editContent, setEditContent] = useState();
+  const editPost = {
+    title: editTitle,
+    content: editContent,
+  };
   const newPost = {
     title: title,
     content: content,
     username: location.state.username,
     created_datetime: time,
   };
-  const [editIsOpen, setEditIsOpen] = useState(false);
-  const [deleteIsOpen, setDeleteIsOpen] = useState(false);
 
   const handleTime = (date) => {
     const result = formatDistanceToNow(
@@ -70,8 +72,16 @@ export function Posts() {
       });
   };
   const confirmEditModal = async () => {
-    // axios.patch(`${baseURL}${editId}/`, {});
-    console.log(editTitle, editContent);
+    axios
+      .patch(`${baseURL}${editId}/`, editPost)
+      .then(function (response) {
+        setEditId();
+        loadPosts();
+      })
+      .catch(function (error) {
+        alert("Erro ao editar!! Tente novamente");
+      });
+    // console.log(editTitle, editContent);
   };
 
   const handleDate = () => {

@@ -19,7 +19,8 @@ export function Posts() {
   const [content, setContent] = useState("");
   const [time, setTime] = useState("");
   const [posts, setPosts] = useState([]);
-
+  const [editTitle, setEditTitle] = useState();
+  const [editContent, setEditContent] = useState();
   const newPost = {
     title: title,
     content: content,
@@ -56,6 +57,7 @@ export function Posts() {
         alert("Erro ao postar! Tente de novo.");
       });
   };
+
   const confirmDeleteModal = () => {
     axios
       .delete(`${baseURL}${deleteId}/`)
@@ -67,30 +69,15 @@ export function Posts() {
         alert("erro ao deletar post");
       });
   };
-  const confirmEditModal = () => {
-    console.log(editId);
+  const confirmEditModal = async () => {
+    // axios.patch(`${baseURL}${editId}/`, {});
+    console.log(editTitle, editContent);
   };
 
   const handleDate = () => {
     const dt = new Date().toISOString();
     setTime(dt);
   };
-
-  function openEditModal() {
-    setEditIsOpen(true);
-  }
-
-  function closeEditModal() {
-    setEditIsOpen(false);
-  }
-
-  function openDeleteModal(id) {
-    setDeleteIsOpen(true);
-  }
-
-  function closeDeleteModal() {
-    setDeleteIsOpen(false);
-  }
 
   const handleClick = (event) => {
     handleDate();
@@ -164,7 +151,12 @@ export function Posts() {
           overLayClassName="modal-overlay"
           className="modal-content"
         >
-          <EditModal save={confirmEditModal} close={() => setEditId()} />
+          <EditModal
+            save={confirmEditModal}
+            close={() => setEditId()}
+            title={(event) => setEditTitle(event.target.value)}
+            content={(event) => setEditContent(event.target.value)}
+          />
         </Modal>
         <Modal
           isOpen={!!deleteId}

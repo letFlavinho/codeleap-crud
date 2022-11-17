@@ -9,11 +9,21 @@ export function EditModal(props) {
         <IoClose className="closeButton" onClick={props.close} size={30} />
       </div>
       <label>Title</label>
-      <input className="title" type="text" placeholder="Hello World" />
+      <input
+        className="title"
+        type="text"
+        placeholder="Hello World"
+        onChange={props.title}
+      />
       <label>Content</label>
-      <textarea className="content" type="text" placeholder="Content here" />
+      <textarea
+        className="content"
+        type="text"
+        placeholder="Content here"
+        onChange={props.content}
+      />
       <div className="flex-end">
-        <button onClick={() => props.save}>SAVE</button>
+        <button onClick={props.save}>SAVE</button>
       </div>
     </div>
   );

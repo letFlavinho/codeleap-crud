@@ -1,10 +1,8 @@
-import style from "../components/Post.css";
+import "../components/Post.css";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
-import { EditModal } from "./EditModal";
-import { DeleteModal } from "./DeleteModal";
+
 export function Post(props) {
-  const { setId } = props;
   return (
     <div className="Post">
       <header>

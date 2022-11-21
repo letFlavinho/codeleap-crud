@@ -1,4 +1,4 @@
-import style from "../components/EditModal.css";
+import "../components/EditModal.css";
 import { IoClose } from "react-icons/io5";
 
 export function EditModal(props) {
@@ -14,6 +14,7 @@ export function EditModal(props) {
         type="text"
         placeholder="Hello World"
         onChange={props.title}
+        value={props.titleValue}
       />
       <label>Content</label>
       <textarea
@@ -21,6 +22,7 @@ export function EditModal(props) {
         type="text"
         placeholder="Content here"
         onChange={props.content}
+        value={props.contentValue}
       />
       <div className="flex-end">
         <button onClick={props.save}>SAVE</button>

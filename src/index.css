@@ -1,29 +1,28 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
-button{
-  opacity:1;
+button {
+  opacity: 1;
   cursor: pointer;
-  
 }
-button:hover{
+button:hover {
   opacity: 0.6;
   transition: 0.3s;
 }
-:root{
+:root {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #DDDDDD;
+  background-color: #dddddd;
 }
 textarea,
 input {
-    border: 1px solid #777777;
-padding: 0.2rem;
+  border: 1px solid #777777;
+  padding: 0.2rem;
   border-radius: 4px;
 }

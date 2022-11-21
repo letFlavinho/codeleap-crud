@@ -22,6 +22,7 @@ export function Posts() {
   const [editTitle, setEditTitle] = useState();
   const [editContent, setEditContent] = useState();
   const editPost = {
+    id: editId,
     title: editTitle,
     content: editContent,
   };
@@ -81,7 +82,6 @@ export function Posts() {
       .catch(function (error) {
         alert("Erro ao editar!! Tente novamente");
       });
-    // console.log(editTitle, editContent);
   };
 
   const handleDate = () => {
@@ -160,12 +160,15 @@ export function Posts() {
           contentLabel="Example Modal"
           overLayClassName="modal-overlay"
           className="modal-content"
+          ariaHideApp={false}
         >
           <EditModal
             save={confirmEditModal}
             close={() => setEditId()}
             title={(event) => setEditTitle(event.target.value)}
+            titleValue={title}
             content={(event) => setEditContent(event.target.value)}
+            contentValue={content}
           />
         </Modal>
         <Modal
@@ -174,6 +177,7 @@ export function Posts() {
           contentLabel="Example Modal"
           overLayClassName="modal-overlay"
           className="modal-content"
+          ariaHideApp={false}
         >
           <DeleteModal
             delete={confirmDeleteModal}

@@ -1,4 +1,4 @@
-import style from "../components/Login.css";
+import "../components/Login.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -23,6 +23,7 @@ export function Login() {
       />
       <div className="flex-end">
         <button
+          disabled={!username}
           type="submit"
           onClick={() => {
             navigate("/Posts", { state: { username: username } });

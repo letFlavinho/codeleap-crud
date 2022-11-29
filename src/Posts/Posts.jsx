@@ -166,9 +166,7 @@ export function Posts() {
             save={confirmEditModal}
             close={() => setEditId()}
             title={(event) => setEditTitle(event.target.value)}
-            titleValue={title}
             content={(event) => setEditContent(event.target.value)}
-            contentValue={content}
           />
         </Modal>
         <Modal

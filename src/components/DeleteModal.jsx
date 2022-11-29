@@ -1,4 +1,4 @@
-import style from "../components/DeleteModal.css";
+import "../components/DeleteModal.css";
 export function DeleteModal(props) {
   return (
     <div className="DeleteModal">
